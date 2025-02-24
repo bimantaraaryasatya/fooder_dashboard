@@ -1,3 +1,4 @@
+import { url } from "inspector";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -11,6 +12,18 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      backgroundImage: {
+        'login': "url('/images/wallpaper.jpg')"
+      },
+      backgroundColor: {
+        'primary': '#F4A261',
+      },
+      borderColor: {
+        'primary' : '#F4A261',
+      },
+      textColor:{
+        'primary' : '#F4A261'
       },
     },
   },
