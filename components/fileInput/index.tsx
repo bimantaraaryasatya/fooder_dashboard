@@ -19,24 +19,36 @@ const FileInput = (props: Props) => {
     const limitSize = props.maxSize
     const acceptTypes = props.acceptTypes.join()
     const handleFileInput = (event: React.ChangeEvent, callback: (data: File | null) => void) : void => {
-        const target = event.target as HTMLInputElement
-        let currentFile: File = (target.files as FileList) [0]
-        setMessage("")
+        const target = event.target as HTMLInputElement;
+        
+        // Pastikan ada file yang dipilih
+        if (!target.files || target.files.length === 0) {
+            setMessage("No file selected");
+            callback(null);
+            return;
+        }
+    
+        let currentFile: File = target.files[0];
+        setMessage("");
+    
         // Handle ketika file tidak sesuai
         if (!props.acceptTypes.includes(currentFile.type)) {   
-            target.value = ""
-            setMessage(`'${currentFile.type}' is invalid file type. The allow file type are ${acceptTypes}`)
-            callback(null)
+            target.value = "";
+            setMessage(`'${currentFile.type}' is invalid file type. The allowed file types are ${acceptTypes}`);
+            callback(null);
             return;
         }
+    
+        // Handle jika ukuran file terlalu besar
         if (currentFile.size > (2 * 1024 * 1024)) {
-            target.value = ""
-            setMessage(`Your file is oversize`)
-            callback(null)
+            target.value = "";
+            setMessage(`Your file is oversize`);
+            callback(null);
             return;
         }
-        callback(currentFile)
-    }
+    
+        callback(currentFile);
+    };    
     return (
         <div className="w-full flex flex-col gap-1 my-2">
             <strong className="text-xs font-bold text-slate-500">{props.label}</strong>

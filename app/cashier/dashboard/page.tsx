@@ -7,7 +7,7 @@ import { FaUtensils, FaHistory } from "react-icons/fa";
 import getMenuCount from "@/lib/getMenuCount";
 
 const DashboardPage = () => {
-    const [nameManager, setNameManager] = useState<string>("");
+    const [nameCashier, setNameCashier] = useState<string>("");
     const [menuCount, setMenuCount] = useState<number>(0);
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const DashboardPage = () => {
     useEffect(() => {
         const cookieValue = getCookie("name") || "";
         console.log("Cookie name:", cookieValue);
-        setNameManager(cookieValue);
+        setNameCashier(cookieValue);
     }, []);
 
     const barData = [
@@ -45,12 +45,12 @@ const DashboardPage = () => {
         <div className="min-h-screen p-6">
             <div className="bg-white p-6 rounded-lg shadow-md border-l-8 border-primary">
                 <h1 className="text-2xl font-semibold text-gray-700">Dashboard</h1>
-                <h2 className="text-lg text-gray-600 mt-2">Welcome, {nameManager}</h2>
+                <h2 className="text-lg text-gray-600 mt-2">Welcome, {nameCashier}</h2>
             </div>
 
 
             <div className="grid gap-6 lg:grid-cols-2 md:grid-cols-2">
-                <div className="bg-white p-4 rounded-lg shadow-md flex items-center gap-4 border-l-8 border-orange-400 mt-4">
+                <div className="bg-white p-4 rounded-lg shadow-md flex items-center gap-4 border-l-8 border-primary mt-4">
                     <FaUtensils className="text-orange-400 text-2xl" />
                     <div>
                         <h3 className="text-sm text-gray-500">Menu Count</h3>

@@ -5,6 +5,7 @@ import { get } from "@/lib/api-bridge";
 import { AlertInfo } from "@/components/alert"
 import Image from "next/image"
 import Search from "./search";
+import AddUser from "./addUser";
 
 const getUser = async (search: string): Promise<IUser[]> => {
     try {
@@ -46,6 +47,10 @@ const UserPage = async ({searchParams}: {searchParams: {[key:string] : string | 
                 {/* Search Bar */}
                 <div className="flex items-center w-full max-w-md flex-grow">
                     <Search url={`/manager/user`} search={search}/>
+                </div>
+
+                <div className="ml-4">
+                    <AddUser/>
                 </div>
             </div>
             {
